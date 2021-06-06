@@ -1,4 +1,4 @@
-import '../assets/css/tailwind.css'
+import './assets/css/tailwind.css'
 
 export default function App() {
   return (

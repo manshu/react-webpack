@@ -1,6 +1,7 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path')
+const CssNano = require('cssnano')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -20,7 +21,30 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  CssNano({
+                    preset: 'default',
+                  }),
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -34,7 +58,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    filename: 'assets/js/[bundle].[contenthash].js',
   },
 
   plugins: [
@@ -42,8 +66,8 @@ module.exports = {
       template: path.resolve(__dirname, '..', './public/index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: '../assets/css/tailwind.css',
-      chunkFilename: 'tailwind.css',
+      filename: 'assets/css/[bundle].[contenthash].css',
+      chunkFilename: 'assets/css/[id].[contenthash].css',
     }),
   ],
-};
+}
