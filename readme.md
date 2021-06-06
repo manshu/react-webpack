@@ -4,4 +4,4 @@ I wanted to learn Webpack 5 and found this video series [https://www.youtube.com
 
 Hope you guys enjoy!
 
-[] CSS file is not compressed, current working on it.
+- [ ] CSS file is not compressed, current working on it.
