@@ -2,6 +2,8 @@ const path = require('path')
 const CssNano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const tailwindcss = require('tailwindcss')
+const autoprefixer = require('autoprefixer') // help tailwindcss to work
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -33,14 +35,11 @@ module.exports = {
             },
           },
           {
-            loader: 'postcss-loader',
+            loader: 'postcss-loader', // postcss loader needed for tailwindcss
             options: {
               postcssOptions: {
-                plugins: [
-                  CssNano({
-                    preset: 'default',
-                  }),
-                ],
+                ident: 'postcss',
+                plugins: [tailwindcss, autoprefixer],
               },
             },
           },
@@ -64,6 +63,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './public/index.html'),
+      favicon: 'src/assets/images/favicon.svg',
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/css/[bundle].[contenthash].css',

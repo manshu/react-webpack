@@ -1,4 +1,7 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -8,4 +11,8 @@ module.exports = {
       'process.env.name': JSON.stringify('Himanshu Prod'),
     }),
   ],
-};
+  optimization: {
+    minimize: true,
+    minimizer: [`...`, new TerserPlugin(), new CssMinimizerPlugin()],
+  },
+}
