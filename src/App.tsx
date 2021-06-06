@@ -1,6 +1,6 @@
-import '../assets/css/tailwind.css';
-import IMG from '../assets/images/react.png';
-import LOGO from '../assets/images/logo.svg';
+import '../assets/css/tailwind.css'
+import IMG from '../assets/images/react.png'
+import LOGO from '../assets/images/logo.svg'
 
 export default function App() {
   return (
@@ -11,5 +11,5 @@ export default function App() {
       <img src={IMG} alt="React Logo" width="400" height="400" />
       <img src={LOGO} alt="React Logo" width="400" height="400" />
     </div>
-  );
+  )
 }
