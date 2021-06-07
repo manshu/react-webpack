@@ -8,7 +8,7 @@ const autoprefixer = require('autoprefixer') // help tailwindcss to work
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', 'jsx', '.js'],
   },
   module: {
     rules: [
