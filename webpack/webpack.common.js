@@ -6,7 +6,7 @@ const tailwindcss = require('tailwindcss')
 const autoprefixer = require('autoprefixer') // help tailwindcss to work
 
 module.exports = {
-    entry: path.resolve(__dirname, '..', './src/index.jsx'),
+    entry: path.resolve(__dirname, '..', './src/index.tsx'),
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
@@ -66,7 +66,7 @@ module.exports = {
             favicon: 'src/assets/images/favicon.svg',
         }),
         new MiniCssExtractPlugin({
-            filename: 'assets/css/[bundle].[contenthash].css',
+            filename: 'assets/css/[name].[contenthash].css',
             chunkFilename: 'assets/css/[id].[contenthash].css',
         }),
     ],
